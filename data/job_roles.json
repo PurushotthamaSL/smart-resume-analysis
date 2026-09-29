@@ -1,0 +1,231 @@
+[
+  {
+    "id": "full-stack-developer",
+    "title": "Full Stack Developer",
+    "domain": "Web Development",
+    "experience_level": "Mid-Level",
+    "description": "Develop and maintain robust web applications end-to-end. Build responsive user interfaces using modern JavaScript frameworks and design efficient backend APIs and database schemas.",
+    "required_skills": [
+      "JavaScript",
+      "React",
+      "Node.js",
+      "Python",
+      "HTML5",
+      "CSS3",
+      "REST API",
+      "PostgreSQL",
+      "Git"
+    ],
+    "preferred_skills": [
+      "TypeScript",
+      "Docker",
+      "Tailwind CSS",
+      "Next.js",
+      "Redis",
+      "AWS",
+      "CI/CD",
+      "Agile / Scrum"
+    ],
+    "keywords": ["full stack", "frontend", "backend", "web development", "spa", "api", "database", "orm", "responsive design", "fullstack"]
+  },
+  {
+    "id": "backend-engineer",
+    "title": "Backend Software Engineer",
+    "domain": "Backend Systems",
+    "experience_level": "Mid-Senior",
+    "description": "Architect and implement scalable server-side systems, microservices, and high-performance REST/GraphQL APIs. Optimize SQL queries, data pipelines, caching layers, and cloud infrastructure.",
+    "required_skills": [
+      "Python",
+      "Flask",
+      "FastAPI",
+      "Django",
+      "PostgreSQL",
+      "REST API",
+      "Docker",
+      "System Design",
+      "Git"
+    ],
+    "preferred_skills": [
+      "Go",
+      "Redis",
+      "Microservices",
+      "Kubernetes",
+      "AWS",
+      "Kafka",
+      "Linux",
+      "Test-Driven Development",
+      "CI/CD"
+    ],
+    "keywords": ["backend", "server", "microservices", "api", "architecture", "distributed systems", "database", "caching", "sql"]
+  },
+  {
+    "id": "data-scientist",
+    "title": "Data Scientist",
+    "domain": "Data Science & Analytics",
+    "experience_level": "Mid-Level",
+    "description": "Extract actionable business insights and build statistical/machine learning models from structured and unstructured data. Clean data, run exploratory analysis, develop predictive algorithms, and present results.",
+    "required_skills": [
+      "Python",
+      "Data Science",
+      "Machine Learning",
+      "Pandas",
+      "NumPy",
+      "Scikit-Learn",
+      "SQL",
+      "Matplotlib",
+      "Communication"
+    ],
+    "preferred_skills": [
+      "Deep Learning",
+      "PyTorch",
+      "TensorFlow",
+      "NLP",
+      "Tableau",
+      "Power BI",
+      "BigQuery",
+      "Problem Solving"
+    ],
+    "keywords": ["data science", "machine learning", "statistics", "eda", "predictive modeling", "pandas", "data analysis", "feature engineering"]
+  },
+  {
+    "id": "ml-engineer",
+    "title": "Machine Learning Engineer",
+    "domain": "Artificial Intelligence",
+    "experience_level": "Senior",
+    "description": "Design, train, fine-tune, and deploy state-of-the-art machine learning and deep learning models into production. Build MLOps pipelines, serve models with low latency, and scale AI workloads in the cloud.",
+    "required_skills": [
+      "Python",
+      "Machine Learning",
+      "Deep Learning",
+      "PyTorch",
+      "TensorFlow",
+      "Scikit-Learn",
+      "Docker",
+      "REST API",
+      "Git"
+    ],
+    "preferred_skills": [
+      "Hugging Face",
+      "Large Language Models",
+      "NLP",
+      "Computer Vision",
+      "Kubernetes",
+      "AWS",
+      "MLOps",
+      "Linux",
+      "CI/CD"
+    ],
+    "keywords": ["machine learning", "deep learning", "neural networks", "model deployment", "mlops", "pytorch", "inference", "llm", "transformers"]
+  },
+  {
+    "id": "devops-cloud-engineer",
+    "title": "DevOps & Cloud Engineer",
+    "domain": "Infrastructure & Cloud",
+    "experience_level": "Mid-Senior",
+    "description": "Automate cloud infrastructure provisioning, container orchestration, and continuous integration/continuous delivery (CI/CD) pipelines. Ensure high availability, security compliance, and system monitoring.",
+    "required_skills": [
+      "Linux",
+      "Docker",
+      "Kubernetes",
+      "AWS",
+      "CI/CD",
+      "Terraform",
+      "Bash",
+      "Git"
+    ],
+    "preferred_skills": [
+      "Ansible",
+      "Prometheus",
+      "Grafana",
+      "Nginx",
+      "Python",
+      "Azure",
+      "Google Cloud Platform",
+      "System Design",
+      "Cybersecurity"
+    ],
+    "keywords": ["devops", "cloud", "infrastructure as code", "k8s", "docker", "containers", "ci/cd", "automation", "monitoring", "site reliability"]
+  },
+  {
+    "id": "frontend-engineer",
+    "title": "Frontend Engineer",
+    "domain": "Web Development",
+    "experience_level": "Mid-Level",
+    "description": "Create intuitive, pixel-perfect, accessible, and high-performance user interfaces. Work closely with product designers to implement interactive components, manage state, and optimize web vitals.",
+    "required_skills": [
+      "JavaScript",
+      "TypeScript",
+      "React",
+      "HTML5",
+      "CSS3",
+      "Tailwind CSS",
+      "REST API",
+      "Git"
+    ],
+    "preferred_skills": [
+      "Next.js",
+      "Vue.js",
+      "WebSockets",
+      "GraphQL",
+      "Test-Driven Development",
+      "Clean Code",
+      "Agile / Scrum"
+    ],
+    "keywords": ["frontend", "ui", "ux", "react", "typescript", "css", "web performance", "accessibility", "client-side"]
+  },
+  {
+    "id": "data-engineer",
+    "title": "Data Engineer",
+    "domain": "Data Engineering",
+    "experience_level": "Mid-Senior",
+    "description": "Build and optimize scalable data ingestion pipelines, ETL processes, and modern data warehouses. Enable analytics and data science teams by ensuring data quality, reliability, and real-time streaming.",
+    "required_skills": [
+      "Python",
+      "SQL",
+      "PostgreSQL",
+      "Docker",
+      "Linux",
+      "Git",
+      "Data Structures & Algorithms"
+    ],
+    "preferred_skills": [
+      "Kafka",
+      "Snowflake",
+      "BigQuery",
+      "AWS",
+      "Redis",
+      "Spark",
+      "Airflow",
+      "CI/CD",
+      "System Design"
+    ],
+    "keywords": ["data engineering", "etl", "data warehouse", "pipeline", "streaming", "sql", "data lake", "batch processing"]
+  },
+  {
+    "id": "ai-nlp-engineer",
+    "title": "AI / NLP Engineer",
+    "domain": "Artificial Intelligence",
+    "experience_level": "Mid-Senior",
+    "description": "Develop natural language processing systems, conversational AI, information retrieval, and LLM-powered applications. Fine-tune open-source models, build RAG pipelines, and perform semantic search.",
+    "required_skills": [
+      "Python",
+      "NLP",
+      "Large Language Models",
+      "PyTorch",
+      "Hugging Face",
+      "spaCy",
+      "Scikit-Learn",
+      "Git"
+    ],
+    "preferred_skills": [
+      "NLTK",
+      "FastAPI",
+      "Docker",
+      "Elasticsearch",
+      "Deep Learning",
+      "REST API",
+      "Clean Code"
+    ],
+    "keywords": ["nlp", "natural language processing", "llm", "rag", "transformers", "langchain", "tokenization", "embeddings", "text extraction"]
+  }
+]

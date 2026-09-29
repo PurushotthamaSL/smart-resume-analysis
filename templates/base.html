@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Smart Resume Analyzer & Skill Recommendation{% endblock %}</title>
+  
+  <!-- Meta SEO -->
+  <meta name="description" content="Data-Driven Smart Resume Analyzer & Skill Recommendation System powered by Flask, spaCy, NLTK, and Scikit-Learn. Extract skills, score ATS readiness, and bridge role gaps.">
+  <meta name="author" content="Smart Resume Analyzer">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              200: '#c7d2fe',
+              300: '#a5b4fc',
+              400: '#818cf8',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              800: '#3730a3',
+              900: '#312e81',
+            },
+            accent: {
+              teal: '#14b8a6',
+              cyan: '#06b6d4',
+              purple: '#a855f7',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  {% block extra_head %}{% endblock %}
+</head>
+<body class="bg-slate-950 text-slate-100 flex flex-col min-h-screen selection:bg-indigo-500 selection:text-white">
+
+  <!-- Navigation Bar -->
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-900/80 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        
+        <!-- Logo -->
+        <a href="{{ url_for('main.index') }}" class="flex items-center space-x-3 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-cyan-400 flex items-center justify-center shadow-lg shadow-indigo-500/20 group-hover:scale-105 transition-transform">
+            <i class="fa-solid fa-file-waveform text-white text-lg"></i>
+          </div>
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="font-bold text-lg text-white font-['Outfit'] tracking-tight">ResuMatch</span>
+              <span class="px-2 py-0.5 text-xs font-semibold uppercase tracking-wider rounded-md bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">AI Pro</span>
+            </div>
+            <p class="text-xs text-slate-400 hidden sm:block">Smart Resume Analyzer & Skill Gap Engine</p>
+          </div>
+        </a>
+
+        <!-- Nav Links -->
+        <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
+          <a href="{{ url_for('main.index') }}" class="text-slate-300 hover:text-white transition flex items-center space-x-1.5">
+            <i class="fa-solid fa-cloud-arrow-up text-indigo-400"></i>
+            <span>Upload Resume</span>
+          </a>
+          <a href="/api/roles" target="_blank" class="text-slate-400 hover:text-white transition flex items-center space-x-1.5">
+            <i class="fa-solid fa-briefcase text-teal-400"></i>
+            <span>Benchmark Roles</span>
+          </a>
+          <a href="/api/health" target="_blank" class="text-slate-400 hover:text-white transition flex items-center space-x-1.5">
+            <i class="fa-solid fa-code text-purple-400"></i>
+            <span>API Status</span>
+          </a>
+        </nav>
+
+        <!-- Right Action Button -->
+        <div class="flex items-center space-x-3">
+          <a href="{{ url_for('main.index') }}#upload-section" class="px-4 py-2 rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white font-medium text-xs sm:text-sm shadow-md shadow-indigo-600/25 transition-all flex items-center space-x-2">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <span>Analyze Resume</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- Flash Messages / Notifications Container -->
+  <div id="toast-container" class="fixed top-20 right-5 z-50 space-y-2 max-w-md w-full px-4">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="p-4 rounded-xl border flex items-center justify-between text-sm shadow-xl backdrop-blur-md {% if category == 'danger' %}bg-rose-950/80 border-rose-800 text-rose-200{% elif category == 'success' %}bg-emerald-950/80 border-emerald-800 text-emerald-200{% else %}bg-indigo-950/80 border-indigo-800 text-indigo-200{% endif %}">
+            <div class="flex items-center space-x-2">
+              <i class="fa-solid {% if category == 'danger' %}fa-circle-exclamation{% elif category == 'success' %}fa-circle-check{% else %}fa-circle-info{% endif %}"></i>
+              <span>{{ message }}</span>
+            </div>
+            <button onclick="this.parentElement.remove()" class="text-slate-400 hover:text-white ml-3">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+  </div>
+
+  <!-- Main Content -->
+  <main class="flex-grow">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-20 border-t border-slate-800 bg-slate-950/90 py-10 text-slate-400 text-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+      
+      <div class="flex items-center space-x-3">
+        <div class="w-8 h-8 rounded-lg bg-indigo-600/30 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+          <i class="fa-solid fa-robot text-sm"></i>
+        </div>
+        <div>
+          <p class="font-semibold text-slate-200">ResuMatch AI Platform</p>
+          <p class="text-xs text-slate-500">Modular Flask &bull; spaCy NER &bull; NLTK Tokenizer &bull; Scikit-Learn TF-IDF</p>
+        </div>
+      </div>
+
+      <!-- Tech Stack Badges -->
+      <div class="flex flex-wrap items-center gap-2 text-xs">
+        <span class="px-2.5 py-1 rounded-full bg-slate-800/80 border border-slate-700/60 text-slate-300">Flask 3.0</span>
+        <span class="px-2.5 py-1 rounded-full bg-slate-800/80 border border-slate-700/60 text-slate-300">spaCy NLP</span>
+        <span class="px-2.5 py-1 rounded-full bg-slate-800/80 border border-slate-700/60 text-slate-300">NLTK</span>
+        <span class="px-2.5 py-1 rounded-full bg-slate-800/80 border border-slate-700/60 text-slate-300">Scikit-Learn</span>
+        <span class="px-2.5 py-1 rounded-full bg-slate-800/80 border border-slate-700/60 text-slate-300">PyMuPDF</span>
+        <span class="px-2.5 py-1 rounded-full bg-slate-800/80 border border-slate-700/60 text-slate-300">SQLAlchemy</span>
+      </div>
+
+      <div class="text-xs text-slate-500 text-center md:text-right">
+        Data-Driven Smart Resume Analysis &bull; Confidential & Secure
+      </div>
+
+    </div>
+  </footer>
+
+  {% block scripts %}{% endblock %}
+</body>
+</html>

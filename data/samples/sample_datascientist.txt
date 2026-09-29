@@ -1,0 +1,27 @@
+Dr. Priya Sharma
+New York, NY | (555) 749-1123 | priya.sharma@example.com | linkedin.com/in/priyasharma-ds | github.com/priyasharma-ai
+
+PROFESSIONAL SUMMARY
+Senior Data Scientist with 5+ years of experience developing predictive machine learning models, natural language processing pipelines, and deep neural networks. Expert in Python, PyTorch, Scikit-Learn, Pandas, and big data analysis.
+
+WORK EXPERIENCE
+Lead Data Scientist | Horizon Analytics | Mar 2022 - Present
+- Spearheaded development of end-to-end customer churn prediction engine using Python, Scikit-Learn, and XGBoost, saving $1.4M annually.
+- Designed and trained transformer-based NLP classification models with PyTorch and Hugging Face, boosting text categorization accuracy to 94.2%.
+- Built automated ETL data pipelines in SQL and PostgreSQL processing over 50M records weekly.
+- Mentored a cross-functional team of 6 junior data scientists and established rigorous cross-validation and ML evaluation standards.
+
+Data Scientist | Alpha Insights | Aug 2019 - Feb 2022
+- Analyzed complex user behavioral datasets using Pandas, NumPy, and SciPy to extract key conversion insights.
+- Created interactive visualization dashboards in Tableau and Matplotlib for executive leadership.
+- Implemented A/B testing frameworks that optimized recommendation click-through rates by 22%.
+
+EDUCATION
+Master of Science in Data Science & Machine Learning | Columbia University | 2019 | GPA: 3.9 / 4.0
+Bachelor of Technology in Computer Engineering | 2017
+
+TECHNICAL SKILLS
+- Programming Languages: Python, R, SQL, Bash
+- Data Science & AI: Machine Learning, Deep Learning, NLP, PyTorch, TensorFlow, Scikit-Learn, Pandas, NumPy, Hugging Face, Matplotlib, Seaborn
+- Databases & Cloud: PostgreSQL, BigQuery, AWS, Docker
+- Tools & Practices: Git, Tableau, Power BI, Statistics, Problem Solving, Communication

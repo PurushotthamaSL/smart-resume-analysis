@@ -1,0 +1,29 @@
+Marcus Vance
+Seattle, WA | (555) 912-4481 | marcus.vance@example.com | linkedin.com/in/marcusvance-devops | github.com/marcusvance
+
+PROFESSIONAL SUMMARY
+DevOps & Cloud Infrastructure Engineer with 6+ years of expertise in Kubernetes container orchestration, AWS cloud architecture, Infrastructure as Code (Terraform), and robust CI/CD automation pipelines.
+
+WORK EXPERIENCE
+Senior Cloud & DevOps Engineer | Apex Cloud Systems | Feb 2021 - Present
+- Architected enterprise multi-region AWS cloud infrastructure utilizing Terraform, achieving 99.99% system availability.
+- Orchestrated container deployments across 8 Kubernetes (EKS) production clusters managing over 400 microservices.
+- Built automated CI/CD deployment pipelines using GitHub Actions and Jenkins, cutting production release failures by 65%.
+- Implemented centralized monitoring and alerting infrastructure with Prometheus, Grafana, and ELK stack.
+
+Site Reliability Engineer | Stratos Networks | Jun 2018 - Jan 2021
+- Automated cloud provisioning and configuration management using Ansible and Python scripting.
+- Hardened Linux servers and implemented network security compliance policies (OWASP, IAM, SSL/TLS).
+- Optimized Docker container images, shrinking build footprints by 42% and speeding up deployment pipelines.
+
+EDUCATION
+Bachelor of Science in Information Technology | University of Washington | 2018
+
+CERTIFICATIONS
+- AWS Certified Solutions Architect Associate
+- Certified Kubernetes Administrator (CKA)
+
+TECHNICAL SKILLS
+- Cloud & Infrastructure: AWS, Docker, Kubernetes, Terraform, Linux, Ansible, CI/CD, Nginx
+- Monitoring & Scripting: Prometheus, Grafana, Bash, Python, Git
+- Security & Concepts: System Design, Cybersecurity, Network Security, Microservices, Agile / Scrum

@@ -1,0 +1,27 @@
+Alex Rivera
+San Francisco, CA | (555) 382-9014 | alex.rivera@example.com | linkedin.com/in/alexrivera-dev | github.com/alexrivera
+
+PROFESSIONAL SUMMARY
+Dynamic Full Stack Developer with 4+ years of experience designing and deploying scalable web applications. Proficient in JavaScript, TypeScript, React, Node.js, and Python with hands-on expertise in PostgreSQL, Docker, AWS, and RESTful API architecture.
+
+WORK EXPERIENCE
+Senior Full Stack Engineer | NovaByte Solutions | Jan 2022 - Present
+- Architected and built high-concurrency microservices using Node.js, Express, and PostgreSQL, reducing API response times by 38%.
+- Developed modern responsive client interfaces with React, Next.js, and Tailwind CSS, increasing user engagement by 45%.
+- Implemented CI/CD pipelines with GitHub Actions and Docker, reducing deployment cycles from 2 hours to 14 minutes.
+- Integrated Redis caching layer and optimized SQL queries, supporting over 250,000 daily active users with 99.9% uptime.
+
+Software Developer | CloudWave Tech | Jun 2020 - Dec 2021
+- Developed REST APIs in Python using Flask and FastAPI for data processing workloads.
+- Collaborated with product designers to build intuitive dashboard components using React and HTML5/CSS3.
+- Automated end-to-end unit testing with Jest and PyTest, achieving 88% test coverage across core modules.
+
+EDUCATION
+Bachelor of Science in Computer Science | University of California, Berkeley | 2020 | GPA: 3.8 / 4.0
+
+TECHNICAL SKILLS
+- Programming Languages: JavaScript, TypeScript, Python, SQL, HTML5, CSS3
+- Web & Frameworks: React, Next.js, Node.js, Express.js, Flask, FastAPI, Tailwind CSS, REST API
+- Databases & Storage: PostgreSQL, Redis, MySQL, MongoDB
+- Cloud & DevOps: Docker, AWS, Git, CI/CD, Linux, GitHub Actions
+- Software Engineering: System Design, Agile / Scrum, Clean Code, Test-Driven Development

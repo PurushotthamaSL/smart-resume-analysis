@@ -1,0 +1,184 @@
+{
+  "resources": [
+    {
+      "skill": "Python",
+      "title": "Complete Python Bootcamp from Zero to Hero",
+      "platform": "Udemy",
+      "type": "Paid",
+      "difficulty": "Beginner",
+      "url": "https://www.udemy.com/course/complete-python-bootcamp/",
+      "description": "Comprehensive guide covering Python syntax, OOP, modules, and practical scripting projects."
+    },
+    {
+      "skill": "Python",
+      "title": "Python for Everybody Specialization",
+      "platform": "Coursera (Univ. of Michigan)",
+      "type": "Free Audit",
+      "difficulty": "Beginner",
+      "url": "https://www.coursera.org/specializations/python",
+      "description": "Learn to program and analyze data with Python, databases, and network technologies."
+    },
+    {
+      "skill": "Docker",
+      "title": "Docker Tutorial for Beginners [Full Course]",
+      "platform": "freeCodeCamp / YouTube",
+      "type": "Free",
+      "difficulty": "Beginner",
+      "url": "https://www.youtube.com/watch?v=fqMOX6JJhGo",
+      "description": "Hands-on walkthrough of Docker containers, images, Dockerfile, docker-compose, and networking."
+    },
+    {
+      "skill": "Kubernetes",
+      "title": "Kubernetes Official Documentation & Interactive Tutorials",
+      "platform": "Kubernetes.io",
+      "type": "Free",
+      "difficulty": "Intermediate",
+      "url": "https://kubernetes.io/docs/tutorials/",
+      "description": "Official interactive step-by-step labs for deployment, pods, services, and cluster management."
+    },
+    {
+      "skill": "React",
+      "title": "The Road to React & Official React Documentation",
+      "platform": "React.dev",
+      "type": "Free",
+      "difficulty": "Beginner to Intermediate",
+      "url": "https://react.dev/learn",
+      "description": "Modern React guides covering functional components, hooks, state management, and best practices."
+    },
+    {
+      "skill": "TypeScript",
+      "title": "TypeScript Handbook & Practical Exercises",
+      "platform": "TypeScriptLang.org",
+      "type": "Free",
+      "difficulty": "Intermediate",
+      "url": "https://www.typescriptlang.org/docs/handbook/intro.html",
+      "description": "Essential static typing guide for JavaScript developers building scalable enterprise apps."
+    },
+    {
+      "skill": "Machine Learning",
+      "title": "Machine Learning Specialization by Andrew Ng",
+      "platform": "Coursera / DeepLearning.AI",
+      "type": "Free Audit / Paid",
+      "difficulty": "Beginner to Intermediate",
+      "url": "https://www.coursera.org/specializations/machine-learning-introduction",
+      "description": "Foundational ML covering supervised learning, neural networks, unsupervised methods, and best practices."
+    },
+    {
+      "skill": "Deep Learning",
+      "title": "Deep Learning Specialization",
+      "platform": "Coursera / DeepLearning.AI",
+      "type": "Free Audit / Paid",
+      "difficulty": "Intermediate to Advanced",
+      "url": "https://www.coursera.org/specializations/deep-learning",
+      "description": "Master Deep Learning, CNNs, RNNs, Transformers, and hyperparameter tuning with PyTorch and TensorFlow."
+    },
+    {
+      "skill": "PyTorch",
+      "title": "Deep Learning with PyTorch: A 60 Minute Blitz",
+      "platform": "PyTorch.org",
+      "type": "Free",
+      "difficulty": "Beginner",
+      "url": "https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html",
+      "description": "Official quickstart guide on tensors, autograd, neural network modules, and GPU acceleration."
+    },
+    {
+      "skill": "Scikit-Learn",
+      "title": "Applied Machine Learning with Scikit-Learn and Pandas",
+      "platform": "Scikit-Learn Documentation",
+      "type": "Free",
+      "difficulty": "Intermediate",
+      "url": "https://scikit-learn.org/stable/tutorial/index.html",
+      "description": "Classification, regression, clustering, model evaluation, cross-validation, and pipeline design."
+    },
+    {
+      "skill": "Large Language Models",
+      "title": "Generative AI with Large Language Models (LLMs)",
+      "platform": "Coursera / AWS / DeepLearning.AI",
+      "type": "Free Audit / Paid",
+      "difficulty": "Intermediate",
+      "url": "https://www.coursera.org/learn/generative-ai-with-llms",
+      "description": "Foundations of transformer architectures, prompt engineering, fine-tuning, RLHF, and RAG pipelines."
+    },
+    {
+      "skill": "NLP",
+      "title": "Natural Language Processing with spaCy Course",
+      "platform": "Ines Montani / Explosion AI",
+      "type": "Free",
+      "difficulty": "Beginner to Intermediate",
+      "url": "https://course.spacy.io/",
+      "description": "Interactive practical course on spaCy tokenization, entity recognition, rule-based matching, and training."
+    },
+    {
+      "skill": "AWS",
+      "title": "AWS Certified Solutions Architect Associate",
+      "platform": "A Cloud Guru / Udemy (Stephane Maarek)",
+      "type": "Paid",
+      "difficulty": "Intermediate",
+      "url": "https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/",
+      "description": "Deep dive into IAM, EC2, S3, RDS, Lambda, VPC networking, security, and cloud architecture patterns."
+    },
+    {
+      "skill": "PostgreSQL",
+      "title": "PostgreSQL Tutorial for Beginners",
+      "platform": "PostgresTutorial.com",
+      "type": "Free",
+      "difficulty": "Beginner",
+      "url": "https://www.postgresqltutorial.com/",
+      "description": "Master SQL querying, indexing, foreign keys, views, transactions, and performance tuning."
+    },
+    {
+      "skill": "System Design",
+      "title": "System Design Primer",
+      "platform": "GitHub (Donne Martin)",
+      "type": "Free",
+      "difficulty": "Advanced",
+      "url": "https://github.com/donnemartin/system-design-primer",
+      "description": "The gold standard open-source guide for learning how to design large-scale distributed systems."
+    },
+    {
+      "skill": "Git",
+      "title": "Pro Git Book (Complete & Free)",
+      "platform": "Git-SCM",
+      "type": "Free",
+      "difficulty": "Beginner to Advanced",
+      "url": "https://git-scm.com/book/en/v2",
+      "description": "Comprehensive reference covering branch management, rebasing, remotes, internals, and workflows."
+    },
+    {
+      "skill": "Tailwind CSS",
+      "title": "Tailwind CSS - Rapidly Build Modern Websites",
+      "platform": "TailwindCSS Documentation",
+      "type": "Free",
+      "difficulty": "Beginner",
+      "url": "https://tailwindcss.com/docs",
+      "description": "Official interactive documentation with utilities, layout guides, responsive design, and component setups."
+    },
+    {
+      "skill": "FastAPI",
+      "title": "FastAPI Official Tutorial - User Guide",
+      "platform": "Tiangolo / FastAPI Docs",
+      "type": "Free",
+      "difficulty": "Beginner to Intermediate",
+      "url": "https://fastapi.tiangolo.com/tutorial/",
+      "description": "Building modern asynchronous APIs with Pydantic validation, OpenAPI documentation, and high performance."
+    },
+    {
+      "skill": "CI/CD",
+      "title": "GitHub Actions Hands-on Walkthrough",
+      "platform": "GitHub Skills",
+      "type": "Free",
+      "difficulty": "Intermediate",
+      "url": "https://skills.github.com/",
+      "description": "Automate testing, build workflows, and deployment to cloud targets with GitHub Actions."
+    },
+    {
+      "skill": "Linux",
+      "title": "Linux Journey: Practical Guide to Linux Command Line",
+      "platform": "LinuxJourney.com",
+      "type": "Free",
+      "difficulty": "Beginner",
+      "url": "https://linuxjourney.com/",
+      "description": "Learn Linux commands, file permissions, process management, packages, and networking step by step."
+    }
+  ]
+}

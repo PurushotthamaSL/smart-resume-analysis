@@ -1,0 +1,305 @@
+{% extends "base.html" %}
+
+{% block title %}Smart Resume Analyzer & Skill Recommendation System{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+
+  <!-- Hero Header -->
+  <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+    <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold uppercase tracking-wider mb-6 animate-pulse">
+      <i class="fa-solid fa-sparkles text-indigo-400"></i>
+      <span>Data-Driven Resume Intelligence</span>
+    </div>
+    
+    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+      Transform Your Resume Into <br class="hidden sm:inline">
+      <span class="gradient-text">Career-Defining Matches</span>
+    </h1>
+    
+    <p class="text-base sm:text-lg text-slate-400 leading-relaxed">
+      Powered by spaCy NER, NLTK tokenization, and Scikit-Learn TF-IDF similarity.
+      Get an instant ATS audit, extract specialized domain skills, and bridge skill gaps with curated learning pathways.
+    </p>
+
+    <!-- Quick Stats Bar -->
+    <div class="mt-8 flex flex-wrap justify-center items-center gap-6 sm:gap-10 text-xs sm:text-sm text-slate-400">
+      <div class="flex items-center space-x-2">
+        <i class="fa-solid fa-check-circle text-emerald-400"></i>
+        <span>PDF & DOCX Support</span>
+      </div>
+      <div class="flex items-center space-x-2">
+        <i class="fa-solid fa-layer-group text-indigo-400"></i>
+        <span>100+ Skill Taxonomy</span>
+      </div>
+      <div class="flex items-center space-x-2">
+        <i class="fa-solid fa-bullseye text-teal-400"></i>
+        <span>ATS Readiness Scoring</span>
+      </div>
+      <div class="flex items-center space-x-2">
+        <i class="fa-solid fa-graduation-cap text-purple-400"></i>
+        <span>Curated Course Recommendations</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Upload & Input Grid -->
+  <div id="upload-section" class="max-w-4xl mx-auto">
+
+    <!-- Upload Card -->
+    <div class="glass-card p-6 sm:p-10 border border-slate-800 shadow-2xl relative overflow-hidden">
+      <!-- Glow Accent -->
+      <div class="absolute -top-24 -left-24 w-72 h-72 bg-indigo-600/15 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-24 -right-24 w-72 h-72 bg-teal-500/15 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="relative z-10">
+        <div class="flex items-center justify-between mb-6">
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold text-white">Upload Your Resume</h2>
+            <p class="text-sm text-slate-400">Drag and drop your file or select from computer</p>
+          </div>
+          <span class="px-3 py-1 rounded-md text-xs font-semibold bg-slate-800 text-slate-300 border border-slate-700">
+            PDF &bull; DOCX &bull; Max 16MB
+          </span>
+        </div>
+
+        <!-- Drag & Drop Zone -->
+        <form id="resume-upload-form" action="{{ url_for('upload.upload_file') }}" method="POST" enctype="multipart/form-data">
+          <div id="dropzone" class="dropzone rounded-2xl p-8 sm:p-12 text-center cursor-pointer hover:border-indigo-400 group">
+            <input type="file" id="resume-input" name="resume" accept=".pdf,.docx" class="hidden">
+            
+            <div id="dropzone-idle" class="flex flex-col items-center justify-center space-y-4">
+              <div class="w-16 h-16 rounded-2xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400 group-hover:scale-110 group-hover:bg-indigo-500/20 transition-all shadow-inner">
+                <i class="fa-solid fa-cloud-arrow-up text-2xl"></i>
+              </div>
+              <div>
+                <p class="text-base sm:text-lg font-semibold text-slate-200">
+                  <span class="text-indigo-400 underline decoration-indigo-400/50 underline-offset-4">Click to browse</span> or drag and drop
+                </p>
+                <p class="text-xs sm:text-sm text-slate-500 mt-1">Supports modern ATS-compatible PDF and Word (.docx) formats</p>
+              </div>
+            </div>
+
+            <!-- File Selected Preview State -->
+            <div id="file-preview-zone" class="hidden flex flex-col items-center justify-center space-y-3">
+              <div class="w-14 h-14 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                <i id="file-icon" class="fa-solid fa-file-pdf text-2xl"></i>
+              </div>
+              <div class="text-center">
+                <p id="file-name" class="text-base font-semibold text-slate-100 max-w-sm truncate">resume.pdf</p>
+                <p id="file-size" class="text-xs text-slate-400">124 KB</p>
+              </div>
+              <button type="button" id="remove-file-btn" class="text-xs text-rose-400 hover:text-rose-300 flex items-center space-x-1">
+                <i class="fa-solid fa-trash-can"></i>
+                <span>Choose another file</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Error Alert Banner -->
+          <div id="upload-error" class="hidden mt-4 p-4 rounded-xl bg-rose-950/80 border border-rose-800 text-rose-200 text-sm flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+              <i class="fa-solid fa-circle-exclamation"></i>
+              <span id="upload-error-text">An error occurred while uploading.</span>
+            </div>
+            <button type="button" onclick="document.getElementById('upload-error').classList.add('hidden')" class="text-rose-400 hover:text-white">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+
+          <!-- Action Button -->
+          <div class="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="text-xs text-slate-500 flex items-center space-x-1.5">
+              <i class="fa-solid fa-shield-halved text-emerald-500"></i>
+              <span>Files are securely processed in memory & database</span>
+            </div>
+            <button type="submit" id="submit-btn" disabled class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-indigo-600 hover:from-indigo-500 hover:to-indigo-400 text-white font-semibold text-sm shadow-lg shadow-indigo-600/30 disabled:opacity-40 disabled:cursor-not-allowed transition-all flex items-center justify-center space-x-2">
+              <i class="fa-solid fa-magnifying-glass-chart"></i>
+              <span>Analyze Resume Now</span>
+            </button>
+          </div>
+        </form>
+
+        <!-- Progress Indicator Overlay (Animated) -->
+        <div id="progress-container" class="hidden mt-8 p-6 rounded-2xl bg-slate-900/90 border border-indigo-500/30 shadow-xl">
+          <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center space-x-2">
+              <div class="w-4 h-4 rounded-full border-2 border-indigo-500 border-t-transparent animate-spin"></div>
+              <span id="progress-stage" class="text-sm font-medium text-indigo-300">Extracting resume text...</span>
+            </div>
+            <span id="progress-percent" class="text-xs font-bold text-slate-400">25%</span>
+          </div>
+          
+          <div class="w-full bg-slate-800 rounded-full h-2.5 overflow-hidden">
+            <div id="progress-bar-fill" class="bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-400 h-2.5 rounded-full transition-all duration-300 w-1/4"></div>
+          </div>
+          
+          <p id="progress-detail" class="text-xs text-slate-500 mt-2">Parsing contact details, employment history, and education blocks...</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Quick Demo Resumes (Try without your own file) -->
+    <div class="mt-8 p-6 rounded-2xl bg-slate-900/60 border border-slate-800/80">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center space-x-2 text-sm font-semibold text-slate-300">
+          <i class="fa-solid fa-bolt text-amber-400"></i>
+          <span>Instant Test: Try Pre-Built Sample Resumes</span>
+        </div>
+        <span class="text-xs text-slate-500">Click any card to analyze sample</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <!-- Sample 1 -->
+        <button type="button" onclick="loadSampleResume('fullstack')" class="p-4 rounded-xl bg-slate-800/50 hover:bg-slate-800 border border-slate-700/60 hover:border-indigo-500/50 text-left transition group">
+          <div class="flex items-center justify-between mb-1.5">
+            <span class="text-xs font-bold text-indigo-400 uppercase tracking-wider">Web Eng</span>
+            <i class="fa-solid fa-arrow-right text-xs text-slate-500 group-hover:text-indigo-400 transition-transform group-hover:translate-x-1"></i>
+          </div>
+          <p class="text-sm font-semibold text-slate-200">Alex Rivera</p>
+          <p class="text-xs text-slate-400 mt-1 line-clamp-1">Full Stack Dev &bull; React, Node, Python, AWS</p>
+        </button>
+
+        <!-- Sample 2 -->
+        <button type="button" onclick="loadSampleResume('datascientist')" class="p-4 rounded-xl bg-slate-800/50 hover:bg-slate-800 border border-slate-700/60 hover:border-teal-500/50 text-left transition group">
+          <div class="flex items-center justify-between mb-1.5">
+            <span class="text-xs font-bold text-teal-400 uppercase tracking-wider">Data / AI</span>
+            <i class="fa-solid fa-arrow-right text-xs text-slate-500 group-hover:text-teal-400 transition-transform group-hover:translate-x-1"></i>
+          </div>
+          <p class="text-sm font-semibold text-slate-200">Dr. Priya Sharma</p>
+          <p class="text-xs text-slate-400 mt-1 line-clamp-1">Data Scientist &bull; Python, ML, PyTorch, SQL</p>
+        </button>
+
+        <!-- Sample 3 -->
+        <button type="button" onclick="loadSampleResume('devops')" class="p-4 rounded-xl bg-slate-800/50 hover:bg-slate-800 border border-slate-700/60 hover:border-purple-500/50 text-left transition group">
+          <div class="flex items-center justify-between mb-1.5">
+            <span class="text-xs font-bold text-purple-400 uppercase tracking-wider">Cloud Ops</span>
+            <i class="fa-solid fa-arrow-right text-xs text-slate-500 group-hover:text-purple-400 transition-transform group-hover:translate-x-1"></i>
+          </div>
+          <p class="text-sm font-semibold text-slate-200">Marcus Vance</p>
+          <p class="text-xs text-slate-400 mt-1 line-clamp-1">DevOps Eng &bull; Kubernetes, Docker, Terraform</p>
+        </button>
+      </div>
+    </div>
+
+    <!-- Paste Text Alternative Accordion -->
+    <div class="mt-6">
+      <button type="button" onclick="toggleTextPaste()" class="w-full py-3 px-4 rounded-xl bg-slate-900/40 border border-slate-800/60 hover:border-slate-700 text-xs sm:text-sm text-slate-400 hover:text-slate-200 flex items-center justify-between transition">
+        <span class="flex items-center space-x-2">
+          <i class="fa-regular fa-clipboard"></i>
+          <span>Alternatively, paste raw resume text directly</span>
+        </span>
+        <i id="paste-chevron" class="fa-solid fa-chevron-down transition-transform"></i>
+      </button>
+
+      <div id="paste-container" class="hidden mt-3 p-5 rounded-2xl bg-slate-900/70 border border-slate-800">
+        <label for="raw-resume-text" class="block text-xs font-semibold text-slate-300 mb-2">Paste Resume Text</label>
+        <textarea id="raw-resume-text" rows="6" class="w-full p-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs sm:text-sm focus:outline-none focus:border-indigo-500 font-mono" placeholder="Paste your resume content here (e.g. John Doe, Skills: Python, Docker, Experience...)"></textarea>
+        <div class="mt-3 flex justify-end">
+          <button type="button" onclick="analyzePastedText()" class="px-5 py-2.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-xs shadow transition">
+            Analyze Pasted Text
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Recent Analyses Section (If any) -->
+  {% if recent_resumes %}
+  <div class="max-w-4xl mx-auto mt-16" id="recent-resumes-section">
+    <div class="flex items-center justify-between mb-4">
+      <h3 class="text-lg font-bold text-white flex items-center space-x-2">
+        <i class="fa-solid fa-clock-rotate-left text-indigo-400"></i>
+        <span>Recently Analyzed Resumes</span>
+      </h3>
+      <span class="text-xs text-slate-500">Stored in SQLite Database</span>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="recent-resumes-grid">
+      {% for res in recent_resumes %}
+      <div class="relative group/card" id="resume-card-{{ res.id }}">
+        <a href="{{ url_for('analysis.view_analysis', resume_id=res.id) }}" class="p-4 pr-12 rounded-xl glass-card glass-card-hover border border-slate-800 block group transition">
+          <div class="flex items-start justify-between">
+            <div class="flex items-center space-x-3">
+              <div class="w-10 h-10 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 font-bold text-sm">
+                {{ (res.candidate_name or "C")[0] }}
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-100 group-hover:text-indigo-300 transition">{{ res.candidate_name or "Anonymous Candidate" }}</p>
+                <p class="text-xs text-slate-400 truncate max-w-[150px] sm:max-w-[180px]">{{ res.filename }}</p>
+              </div>
+            </div>
+            <div class="text-right">
+              <span class="inline-block px-2 py-0.5 rounded text-xs font-semibold {% if res.ats_score >= 75 %}bg-emerald-500/10 text-emerald-400 border border-emerald-500/20{% elif res.ats_score >= 50 %}bg-indigo-500/10 text-indigo-400 border border-indigo-500/20{% else %}bg-amber-500/10 text-amber-400 border border-amber-500/20{% endif %}">
+                ATS: {{ res.ats_score|int }}%
+              </span>
+              <p class="text-[10px] text-slate-500 mt-1">{{ res.uploaded_at.strftime('%b %d, %H:%M') if res.uploaded_at else '' }}</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Delete Option -->
+        <button onclick="handleDeleteRecentResume(event, this)" 
+                data-resume-id="{{ res.id }}"
+                data-candidate-name="{{ res.candidate_name or res.filename or 'Candidate' }}"
+                title="Delete this analyzed resume"
+                aria-label="Delete analyzed resume"
+                class="absolute top-3.5 right-3 w-7 h-7 rounded-lg bg-slate-900/80 hover:bg-rose-500/20 text-slate-400 hover:text-rose-400 border border-slate-700/60 hover:border-rose-500/40 flex items-center justify-center transition z-10">
+          <i class="fa-regular fa-trash-can text-xs pointer-events-none"></i>
+        </button>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- Core Pipeline Features Grid -->
+  <div class="max-w-6xl mx-auto mt-24">
+    <div class="text-center mb-12">
+      <h3 class="text-2xl sm:text-3xl font-bold text-white">End-to-End NLP & ML Intelligence</h3>
+      <p class="text-slate-400 text-sm mt-2">Engineered with modular, production-ready natural language components</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      
+      <div class="p-6 rounded-2xl glass-card border border-slate-800/80">
+        <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400 mb-4 text-xl">
+          <i class="fa-solid fa-microchip"></i>
+        </div>
+        <h4 class="text-lg font-bold text-white mb-2">spaCy NER & Tokenizer</h4>
+        <p class="text-slate-400 text-sm leading-relaxed">
+          Extracts names, emails, phones, education history, and certifications using trained Named Entity Recognition and syntactic parsing.
+        </p>
+      </div>
+
+      <div class="p-6 rounded-2xl glass-card border border-slate-800/80">
+        <div class="w-12 h-12 rounded-xl bg-teal-500/10 border border-teal-500/30 flex items-center justify-center text-teal-400 mb-4 text-xl">
+          <i class="fa-solid fa-chart-pie"></i>
+        </div>
+        <h4 class="text-lg font-bold text-white mb-2">TF-IDF & Cosine Similarity</h4>
+        <p class="text-slate-400 text-sm leading-relaxed">
+          Matches resume content with benchmark job descriptions using n-gram term frequency and vector angle metrics to rank role compatibility.
+        </p>
+      </div>
+
+      <div class="p-6 rounded-2xl glass-card border border-slate-800/80">
+        <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 mb-4 text-xl">
+          <i class="fa-solid fa-compass"></i>
+        </div>
+        <h4 class="text-lg font-bold text-white mb-2">Skill Gap & Learning Paths</h4>
+        <p class="text-slate-400 text-sm leading-relaxed">
+          Pinpoints high-value missing skills and connects candidates with vetted free and certified learning resources to accelerate hiring.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/upload.js') }}"></script>
+{% endblock %}

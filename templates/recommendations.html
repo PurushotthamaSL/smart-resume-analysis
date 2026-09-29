@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block title %}Skill Recommendations & Learning Pathways &bull; ResuMatch AI{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+
+  <!-- Breadcrumbs & Header -->
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+    <div>
+      <div class="flex items-center space-x-2 text-xs sm:text-sm text-slate-400 mb-2">
+        <a href="{{ url_for('main.index') }}" class="hover:text-indigo-400 transition">Home</a>
+        <span>/</span>
+        <a href="{{ url_for('analysis.view_analysis', resume_id=resume.id) }}" class="hover:text-indigo-400 transition">Analysis Dashboard</a>
+        <span>/</span>
+        <span class="text-indigo-400 font-semibold">Learning Pathways</span>
+      </div>
+      <h1 class="text-2xl sm:text-3xl font-bold text-white tracking-tight flex items-center space-x-3">
+        <span class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400">
+          <i class="fa-solid fa-graduation-cap text-lg"></i>
+        </span>
+        <span>Personalized Skill Recommendations</span>
+      </h1>
+      <p class="text-sm text-slate-400 mt-1">
+        Curated courses, official documentation, and interactive labs for <span class="text-slate-200 font-medium">{{ resume.candidate_name or "Candidate" }}</span>
+      </p>
+    </div>
+
+    <div>
+      <a href="{{ url_for('analysis.view_analysis', resume_id=resume.id) }}" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 text-xs sm:text-sm font-medium transition flex items-center space-x-2">
+        <i class="fa-solid fa-arrow-left"></i>
+        <span>Back to Dashboard</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Recommendation Pathway Cards Grid -->
+  {% if recommendations %}
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {% for rec in recommendations %}
+    <div class="glass-card p-6 border border-slate-800 flex flex-col justify-between">
+      <div>
+        <div class="flex items-start justify-between mb-3">
+          <div>
+            <span class="text-xs font-semibold text-indigo-400 uppercase tracking-wider block">Target Role</span>
+            <p class="text-xs text-slate-400">{{ rec.target_job_role }}</p>
+          </div>
+          <span class="px-2.5 py-1 rounded text-xs font-bold {% if rec.priority == 'High' %}bg-rose-500/10 text-rose-400 border border-rose-500/20{% elif rec.priority == 'Medium' %}bg-amber-500/10 text-amber-400 border border-amber-500/20{% else %}bg-indigo-500/10 text-indigo-400 border border-indigo-500/20{% endif %}">
+            {{ rec.priority }} Priority
+          </span>
+        </div>
+
+        <h3 class="text-xl font-bold text-white mb-2 flex items-center space-x-2">
+          <span>{{ rec.skill_name }}</span>
+        </h3>
+        <p class="text-xs text-slate-400 mb-4">
+          Mastering this skill bridges critical gaps in your target career domain.
+        </p>
+
+        <!-- Course / Resource Links -->
+        <div class="space-y-3">
+          {% for res in rec.resources %}
+          <div class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-slate-700 transition">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-xs font-semibold text-slate-200 truncate max-w-[210px]">{{ res.title }}</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded font-bold {% if res.type == 'Free' %}bg-emerald-500/10 text-emerald-400{% else %}bg-indigo-500/10 text-indigo-400{% endif %}">
+                {{ res.type }}
+              </span>
+            </div>
+            
+            <p class="text-[11px] text-slate-400 mb-2 line-clamp-2">{{ res.description }}</p>
+
+            <div class="flex items-center justify-between pt-2 border-t border-slate-800/80 text-[10px] text-slate-500">
+              <span class="flex items-center space-x-1">
+                <i class="fa-solid fa-chalkboard text-slate-400"></i>
+                <span>{{ res.platform }}</span>
+              </span>
+              <a href="{{ res.url }}" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:text-indigo-300 font-semibold flex items-center space-x-1">
+                <span>Start Learning</span>
+                <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+              </a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-800 flex items-center justify-between text-xs text-slate-500">
+        <span>{{ rec.resources|length }} resources available</span>
+        <span class="text-emerald-400"><i class="fa-solid fa-check-circle mr-1"></i>Verified Links</span>
+      </div>
+
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="text-center py-16 glass-card border border-slate-800">
+    <div class="w-16 h-16 rounded-full bg-emerald-500/10 text-emerald-400 flex items-center justify-center mx-auto mb-4 text-2xl">
+      <i class="fa-solid fa-trophy"></i>
+    </div>
+    <h3 class="text-xl font-bold text-white">No Missing Skill Gaps!</h3>
+    <p class="text-sm text-slate-400 max-w-md mx-auto mt-2">
+      Your resume already aligns exceptionally well with the benchmark roles. Continue honing your advanced system design and leadership expertise.
+    </p>
+    <a href="{{ url_for('analysis.view_analysis', resume_id=resume.id) }}" class="mt-6 inline-block px-5 py-2.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-xs">
+      Return to Dashboard
+    </a>
+  </div>
+  {% endif %}
+
+</div>
+{% endblock %}
